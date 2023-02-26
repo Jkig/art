@@ -5,6 +5,8 @@
   margin: 0px;
   width: 100%;
 
+  min-width: 100%;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -22,10 +24,37 @@ body {
   place-items: top;
   min-width: 320px;
   width: 100%;
+
+  min-width: 100%;
+
   min-height: 100vh;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+
+.centerMe{
+  text-align: center;
+}
+
+.loginPage{
+  width: 100%;
+  min-width: 100%;
+  padding: 5%;
+  margin: auto;
+}
+
+
+.loginButton{
+  margin: auto;
+  padding: 7px;
+  border-radius: 7px;
+  border-style: solid;
+}
+
+.oneSpace{
+  width: 1px;
 }
