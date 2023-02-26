@@ -4,6 +4,7 @@ import NavBar from './navbar'
 import Feed from './feed'
 import RecentFeed from './recentFeed'
 import User from './User'
+import FooterNavBar from './footer'
 
 function App() {
   const [page, setPage] = useState("RecentFeed") // eventually, probs a big single object for state
@@ -13,6 +14,8 @@ function App() {
   }
 
   // navbar position
+  const isDesktop = true
+  /*
   const [isDesktop, setDesktop] = useState(window.innerWidth > 650);
   const updateMedia = () => {
     setDesktop(window.innerWidth > 650);
@@ -21,6 +24,7 @@ function App() {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
+  */
 
 
   return (
@@ -29,7 +33,8 @@ function App() {
       {(page == "RecentFeed") && <RecentFeed />}
       {(page == "Feed") && <Feed />}
       {(page == "User") && <User />}
-      {!isDesktop && <NavBar handlePage={handlePage} page={page}/>}
+      {//!isDesktop && <FooterNavBar handlePage={handlePage} page={page}/>
+      }
       
     </div>
   )

@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# files:
-utils/firebase.js
+# other files:
+# utils/firebase.js # fine now
