@@ -55,3 +55,8 @@
 .unBulleted {
   list-style-type: none;
 }
+
+.goHome{
+  text-decoration: none;
+  color: white;
+}
