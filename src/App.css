@@ -43,10 +43,6 @@
   padding-bottom: 5px;
   text-decoration: none;
 }
-.authButtons {
-  display: flex;
-  justify-content: center;
-}
 
 .spacer {
   padding: 10px;
