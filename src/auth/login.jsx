@@ -4,12 +4,12 @@ import { auth } from "../../utils/firebase.js"
 
 export default function Login() {
     const googleProvider = new GoogleAuthProvider();
+
     const GoogleLogin = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-        } catch (error) {
 
-        }
+        } catch (error) {}
     }
 
     return (
@@ -17,7 +17,10 @@ export default function Login() {
             <div className="loginBox">
                 <h2 className="centerMe">Join</h2>
                 <div>
-                    <button className="loginButton">
+                    <button 
+                        onClick={GoogleLogin}
+                        className="loginButton"
+                    >
                         Sign in with Google
                         <div className="oneSpace"></div>
                         <FcGoogle className="googleIcon"/>
