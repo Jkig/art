@@ -2,18 +2,23 @@ import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../utils/firebase.js";
 //import { useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+// TODO: Set-Cookie: SameSite=None; Secure, its still working, but ~bad practice
+
 
 
 export default function Login() {
-
     //const navigate = useNavigate();
+    const [user, loading] = useAuthState(auth);
 
     const googleProvider = new GoogleAuthProvider();
 
     const GoogleLogin = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-        } catch (error) {}
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -31,7 +36,11 @@ export default function Login() {
                     </button>
                 </div>
                 <h1>
-                    <a href="/" className="goHome">"{"{is loged in && "}" Success! go home! {"}"}</a>
+                    
+                    { user && // does this do it?
+                        <a href="/" className="goHome">
+                            Success! Go home!
+                            </a>}
                 </h1>
             </div>
         </div>

@@ -1,16 +1,22 @@
+import { auth } from "../utils/firebase.js";
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 export default function User(){
+    const [user, loading] = useAuthState(auth);
     return(
         <div>
-            {
-                // if logged in, show log out instead
-            }
-            <div className="authButtons">
-            </div>
-            <a className="authButton" href="/auth/login.html">log In</a>
             <ul className="unBulleted">
+                {!user && <a className="authButton" href="/auth/login.html">log In</a>}
+                <li>
+                    {user && <img className="bigProfilePhoto" src={user.photoURL} />}
+                    {user && <p>{user.displayName}</p>}
+                    {user && <button onClick={() => auth.signOut()}>Sign Out</button>}
+                </li>
+                <div className="spacer"/>
                 <li><a>Profile</a></li>
                 <li><a>Saved</a></li>
                 <li><a>Folowing</a></li>
+                <li><button onClick={() => console.log("CREATE")}>New Post</button></li>
             </ul>
         </div>
     )

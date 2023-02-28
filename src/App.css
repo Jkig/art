@@ -34,14 +34,15 @@
 }
 
 .authButton {
-  background-color: #0074D9;
   color: white;
+  background-color: grey;
   border-radius: 5px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   text-decoration: none;
+  position: center;
 }
 
 .spacer {
@@ -59,4 +60,9 @@
 .goHome{
   text-decoration: none;
   color: white;
+}
+
+.bigProfilePhoto{
+  height: 50px;
+  border-radius: 50px;
 }

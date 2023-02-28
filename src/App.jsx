@@ -12,7 +12,6 @@ function App() {
   function handlePage(newPage){
     setPage(newPage)
   }
-
   // navbar position
   const isDesktop = true
   /*
@@ -30,6 +29,7 @@ function App() {
   return (
     <div className="App">
       {isDesktop && <NavBar handlePage={handlePage} page={page}/>}
+
       {(page == "RecentFeed") && <RecentFeed />}
       {(page == "Feed") && <Feed />}
       {(page == "User") && <User />}
