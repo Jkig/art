@@ -1,7 +1,7 @@
 import { auth } from "../utils/firebase.js";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-export default function User(){
+export default function User(props){
     const [user, loading] = useAuthState(auth);
     return(
         <div>
@@ -16,7 +16,7 @@ export default function User(){
                 <li><a>Profile</a></li>
                 <li><a>Saved</a></li>
                 <li><a>Folowing</a></li>
-                <li><button onClick={() => console.log("CREATE")}>New Post</button></li>
+                <li><button onClick={() => props.handleCreating()}>New Post</button></li>
             </ul>
         </div>
     )
