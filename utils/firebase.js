@@ -25,3 +25,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const db = getFirestore(app);
 
+
+// for image:
+import { getStorage, ref, uploadBytes } from "firebase/storage"; // new
+export const storage = getStorage(app)
