@@ -10,7 +10,6 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 // create post, including reference
 import { getStorage, ref, uploadBytes } from "firebase/storage"; // new
 import { nanoid } from 'nanoid'
-
 import { storage } from '../utils/firebase'
 
 
@@ -49,9 +48,12 @@ export default function Create(props){
         const photoID = nanoid()
         // const storage = getStorage();
         const storageRef = ref(storage, `images/${photoID}`);
+        
+        
         uploadBytes(storageRef, post.imageSrc).then(() => {
             console.log("successful upload!")
         })// this is the problem, idk if the imageSrc is the prob....
+        
 
 
         // creating image reference:
