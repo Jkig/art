@@ -49,7 +49,7 @@ export default function Create(props){
         // const storage = getStorage();
         const storageRef = ref(storage, `images/${photoID}`);
         
-        
+        console.log(storageRef, post.imageSrc)
         uploadBytes(storageRef, post.imageSrc).then(() => {
             console.log("successful upload!")
         })// this is the problem, idk if the imageSrc is the prob....
