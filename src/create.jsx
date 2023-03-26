@@ -35,42 +35,82 @@ export default function Create(props){
             setPost({...post, imageSrc: undefined})
             return
         }
-        setPost({...post, imageSrc: e.target.files[0]})
+
+        ///////// new
+        const storageRef = ref(storage);
+        const fileRef = ref(storageRef, `images/${nanoid()}`)
+        console.log(post.imageSrc)
+        uploadBytes(fileRef, e.target.files[0]).then(() => {
+            console.log("successful upload!")
+        })
+        // setPost({...post, imageSrc: fileRef})
+        setPost({...post, imageSrc: e.target.files[0], imageRef: fileRef})
+        //console.log(post.imageSrc)
     }
     
 
     const submitPost = async (e) => {
+        if (!post.imageSrc) {
+            return;
+        }
+        /*
+        const storageRef = ref(storage);
+        const fileRef = ref(storageRef, `images/${nanoid()}`)
+
+        console.log("here0")
+        console.log(post)
+        console.log("here.25")
+        console.log(post.imageSrc)
+        console.log("here.5")
+        
+        uploadBytes(fileRef, post.imageSrc).then(() => {
+            console.log("successful upload!")
+        })
+
+        console.log("here1")
+        */
+        /*
+        try {
+            await fileRef.put(post.imageSrc);
+            console.log('File uploaded successfully');
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
         e.preventDefault();
         const collectionRef = collection(db, "posts");
+        /*
 
 
         // uploading image first:
         const photoID = nanoid()
-        // const storage = getStorage();
         const storageRef = ref(storage, `images/${photoID}`);
         
         console.log(storageRef, post.imageSrc)
         uploadBytes(storageRef, post.imageSrc).then(() => {
             console.log("successful upload!")
-        })// this is the problem, idk if the imageSrc is the prob....
-        
-
+        })
+        */
 
         // creating image reference:
-
+        console.log("here0")
+        console.log(post.imageRef)
 
         
+        const collectionRef = collection(db, "posts");
+        console.log(collectionRef)
         // normal stuff:
         await addDoc(collectionRef, {
             title: post.title,
             description: post.description,
-            //imageRef: storageRef, // just connect the image reference here, but trough the firebase bucket// why no imageref...
+            //imageRef: fileRef, // just connect the image reference here, but trough the firebase bucket// why no imageref...
+            //imageRef: post.imageRef, // this one is newer
             timestamp: serverTimestamp(),
             user: user.uid,
             avatar: user.photoURL,
             username: user.displayName,
         });
         
+        console.log("here1")
 
         props.handleCreating() // closes this when done
     }
