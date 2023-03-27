@@ -43,7 +43,7 @@ export default function Create(props){
         e.preventDefault();
         const collectionRef = collection(db, "posts");
 
-
+        /*
         // uploading image first:
         const photoID = nanoid()
         // const storage = getStorage();
@@ -53,7 +53,7 @@ export default function Create(props){
         uploadBytes(storageRef, post.imageSrc).then(() => {
             console.log("successful upload!")
         })// this is the problem, idk if the imageSrc is the prob....
-        
+        */
 
 
         // creating image reference:
