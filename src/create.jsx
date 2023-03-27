@@ -35,42 +35,35 @@ export default function Create(props){
             setPost({...post, imageSrc: undefined})
             return
         }
-        setPost({...post, imageSrc: e.target.files[0]})
+
+        ///////// new
+        const storageRef = ref(storage);
+        const fileRef = ref(storageRef, `images/${nanoid()}`)
+        uploadBytes(fileRef, e.target.files[0]).then(() => {
+            console.log("successful upload!")
+        })
+        // setPost({...post, imageSrc: fileRef})
+        setPost({...post, imageSrc: e.target.files[0], imageRef: fileRef})
+        //console.log(post.imageSrc)
     }
     
 
     const submitPost = async (e) => {
+        if (!post.imageSrc) {
+            return;
+        }
         e.preventDefault();
         const collectionRef = collection(db, "posts");
 
-        /*
-        // uploading image first:
-        const photoID = nanoid()
-        // const storage = getStorage();
-        const storageRef = ref(storage, `images/${photoID}`);
-        
-        console.log(storageRef, post.imageSrc)
-        uploadBytes(storageRef, post.imageSrc).then(() => {
-            console.log("successful upload!")
-        })// this is the problem, idk if the imageSrc is the prob....
-        */
-
-
-        // creating image reference:
-
-
-        
-        // normal stuff:
         await addDoc(collectionRef, {
             title: post.title,
             description: post.description,
-            //imageRef: storageRef, // just connect the image reference here, but trough the firebase bucket// why no imageref...
+            imageRef: post.imageRef.fullPath, // this one is newer
             timestamp: serverTimestamp(),
             user: user.uid,
             avatar: user.photoURL,
             username: user.displayName,
         });
-        
 
         props.handleCreating() // closes this when done
     }

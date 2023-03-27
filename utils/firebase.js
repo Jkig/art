@@ -27,14 +27,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// other way too, export..
 //const analytics = getAnalytics(app);
 
 
-export const auth = getAuth();
-export const db = getFirestore(app);
+const auth = getAuth();
+// export const db = getFirestore(app);
+const db = getFirestore(app); // firebase.firestore(); if do the other way
+const storage = getStorage(app);// firebase.storage();
+
+export { auth, db, storage };
 
 
 // for image:
 // import { getStorage} from "firebase/storage"; //, ref, uploadBytes } from "firebase/storage"; // new
-console.log(getStorage(app))
-export const storage = getStorage(app)
+// export const storage = getStorage(app)
