@@ -53,23 +53,18 @@ export default function Create(props){
         if (!post.imageSrc) {
             return;
         }
-        console.log("0")
+        e.preventDefault();
         const collectionRef = collection(db, "posts");
-        console.log("1")
-        console.log(collectionRef)
         // normal stuff:
         await addDoc(collectionRef, {
             title: post.title,
             description: post.description,
-            //imageRef: fileRef, // just connect the image reference here, but trough the firebase bucket// why no imageref...
-            //imageRef: post.imageRef, // this one is newer
+            imageRef: post.imageRef.fullPath, // this one is newer
             timestamp: serverTimestamp(),
             user: user.uid,
             avatar: user.photoURL,
             username: user.displayName,
         });
-        
-        console.log("here1")
 
         props.handleCreating() // closes this when done
     }
