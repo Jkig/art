@@ -53,50 +53,9 @@ export default function Create(props){
         if (!post.imageSrc) {
             return;
         }
-        /*
-        const storageRef = ref(storage);
-        const fileRef = ref(storageRef, `images/${nanoid()}`)
-
-        console.log("here0")
-        console.log(post)
-        console.log("here.25")
-        console.log(post.imageSrc)
-        console.log("here.5")
-        
-        uploadBytes(fileRef, post.imageSrc).then(() => {
-            console.log("successful upload!")
-        })
-
-        console.log("here1")
-        */
-        /*
-        try {
-            await fileRef.put(post.imageSrc);
-            console.log('File uploaded successfully');
-        } catch (error) {
-            console.error('Error uploading file:', error);
-        }
-        e.preventDefault();
+        console.log("0")
         const collectionRef = collection(db, "posts");
-        /*
-
-
-        // uploading image first:
-        const photoID = nanoid()
-        const storageRef = ref(storage, `images/${photoID}`);
-        
-        console.log(storageRef, post.imageSrc)
-        uploadBytes(storageRef, post.imageSrc).then(() => {
-            console.log("successful upload!")
-        })
-        */
-
-        // creating image reference:
-        console.log("here0")
-        console.log(post.imageRef)
-
-        
-        const collectionRef = collection(db, "posts");
+        console.log("1")
         console.log(collectionRef)
         // normal stuff:
         await addDoc(collectionRef, {
