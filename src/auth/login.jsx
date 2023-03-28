@@ -7,7 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 
-export default function Login() {
+export default function Login(props) {
     //const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
 
@@ -19,6 +19,7 @@ export default function Login() {
         } catch (error) {
             console.log(error)
         }
+        props.handleAuthenticating();
     }
 
     return (
@@ -37,10 +38,10 @@ export default function Login() {
                 </div>
                 <h1>
                     
-                    { user && // does this do it?
+                    {/* user && // does this do it?
                         <a href="/" className="goHome">
                             Success! Go home!
-                            </a>}
+    </a>*/}
                 </h1>
             </div>
         </div>

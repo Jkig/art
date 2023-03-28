@@ -49,7 +49,16 @@ export default function Create(props){
     
 
     const submitPost = async (e) => {
+        if (post.title.length > 100){
+            alert("FAILED, Title is too long")
+            return;
+        }
+        if (post.description.length > 300){
+            alert("FAILED, Description is too long")
+            return;
+        }
         if (!post.imageSrc) {
+            alert("FAILED, no image given")
             return;
         }
         e.preventDefault();
@@ -64,8 +73,9 @@ export default function Create(props){
             avatar: user.photoURL,
             username: user.displayName,
         });
-
-        props.handleCreating() // closes this when done
+        if (post.imageSrc && (post.description.length <= 300) && (post.title.length <= 100)){
+            props.handleCreating() // closes this when done
+        }
     }
 
     return (

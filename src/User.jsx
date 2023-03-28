@@ -6,7 +6,8 @@ export default function User(props){
     return(
         <div>
             <ul className="unBulleted">
-                {!user && <a className="authButton" href="/auth/login.html">log In</a>}
+                {!user && <a className="authButton" onClick={props.handleAuthenticating}>log In</a>}{/*href="/auth/login.html">log In</a>
+                */}
                 <li>
                     {user && <img className="bigProfilePhoto" src={user.photoURL} />}
                     {user && <p>{user.displayName}</p>}
