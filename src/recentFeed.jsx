@@ -4,7 +4,7 @@ import { ref, getDownloadURL } from "firebase/storage"
 import { collection, onSnapshot, orderBy, query} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Post from "./post.jsx"
-
+// TODO apperently gotta also pass in unique key props for list items
 
 
 export default function RecentFeed(){
