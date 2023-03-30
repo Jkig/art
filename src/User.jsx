@@ -13,10 +13,7 @@ export default function User(props){
                     {user && <p>{user.displayName}</p>}
                     {user && <button onClick={() => auth.signOut()}>Sign Out</button>}
                 </li>
-                <div className="spacer"/>
-                <li><a>Profile</a></li>
-                <li><a>Saved</a></li>
-                <li><a>Folowing</a></li>
+                <div className="spacer5"/>
                 <li><button onClick={() => props.handleCreating()}>New Post</button></li>
             </ul>
         </div>

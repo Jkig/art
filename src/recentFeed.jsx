@@ -1,6 +1,4 @@
-import { db, storage } from "../utils/firebase"
-import { child, get } from "firebase/database"; // ref sometimes here
-import { ref, getDownloadURL } from "firebase/storage"
+import { db} from "../utils/firebase"
 import { collection, onSnapshot, orderBy, query} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Post from "./post.jsx"
@@ -25,7 +23,6 @@ export default function RecentFeed(){
     
     return(
         <div>
-            {/*<Post { ...allPosts[0] }/>/*allPosts.map(post => (<Post { ...post }/>))*/}
             {allPosts.map(post => (<Post { ...post}/>))}
             <div className="spacer"></div>
         </div>

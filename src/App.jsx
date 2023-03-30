@@ -27,7 +27,6 @@ function App() {
     <div className="App">
       <NavBar handlePage={handlePage} page={page}/>
       {(page == "RecentFeed") && <RecentFeed />}
-      {(page == "Feed") && <Feed />}
       {(page == "User") && <User handleCreating={handleCreating} handleAuthenticating={handleAuthenticating} />}
       {creating && <Create handleCreating={handleCreating}/>}
       {authenticating && <Login handleAuthenticating={handleAuthenticating}/>}
