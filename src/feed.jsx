@@ -2,7 +2,7 @@ export default function Feed(){
     return(
         <div>
             <p>
-                user's personal feed
+                You need to follow other users to see their new posts here
             </p>
         </div>
     )

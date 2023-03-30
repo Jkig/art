@@ -1,4 +1,4 @@
-import { auth, db } from "../utils/firebase"
+import { auth, db, storage } from "../utils/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useEffect, useState } from "react"
 import { AiOutlineCloseCircle } from "react-icons/Ai";
@@ -8,9 +8,8 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 // I need to upload the photo
 // create reference
 // create post, including reference
-import { getStorage, ref, uploadBytes } from "firebase/storage"; // new
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // new
 import { nanoid } from 'nanoid'
-import { storage } from '../utils/firebase'
 
 
 export default function Create(props){
@@ -49,7 +48,7 @@ export default function Create(props){
     
 
     const submitPost = async (e) => {
-        if (post.title.length > 100){
+        if (post.title.length > 50){
             alert("FAILED, Title is too long")
             return;
         }
@@ -64,16 +63,35 @@ export default function Create(props){
         e.preventDefault();
         const collectionRef = collection(db, "posts");
 
+        //imageURL: getDownloadURL(ref(gen, post.imageRef.fullPath)),// this one is newer
+        getDownloadURL(ref(storage, post.imageRef)).then((ans) =>{
+            addDoc(collectionRef, {
+                title: post.title,
+                description: post.description,
+                imageRef: post.imageRef.fullPath, 
+                imageURL: ans,
+                timestamp: serverTimestamp(),
+                user: user.uid,
+                avatar: user.photoURL,
+                username: user.displayName,
+            });
+        })
+
+        // old functioning one:
+        /*
         await addDoc(collectionRef, {
             title: post.title,
             description: post.description,
-            imageRef: post.imageRef.fullPath, // this one is newer
+            imageRef: post.imageRef.fullPath, 
             timestamp: serverTimestamp(),
             user: user.uid,
             avatar: user.photoURL,
             username: user.displayName,
         });
-        if (post.imageSrc && (post.description.length <= 300) && (post.title.length <= 100)){
+        */
+        
+        
+        if (post.imageSrc && (post.description.length <= 300) && (post.title.length <= 50)){
             props.handleCreating() // closes this when done
         }
     }
@@ -87,7 +105,7 @@ export default function Create(props){
                     {!post.imageSrc && <input type="file" onChange={handleFile}/>}
                 </div>
                 <textarea className="title" placeholder="Title" onChange={(e) => setPost({...post, title: e.target.value})} value={post.title} />
-                <p className={`lengthIndicator${post.title.length > 100 ? "Red" : ""}`}>{post.title.length}/100</p>
+                <p className={`lengthIndicator${post.title.length > 50 ? "Red" : ""}`}>{post.title.length}/50</p>
                 <textarea className="description" placeholder="Description" onChange={(e) => setPost({...post, description: e.target.value})} value={post.description} />
                 <p className={`lengthIndicator${post.description.length > 300 ? "Red" : ""}`}>{post.description.length}/300</p>
                 <button className="createButton" type="submit">Create</button>

@@ -65,6 +65,11 @@
   border-radius: 50px;
 }
 
+.smallProfilePhoto{
+  height: 20px;
+  border-radius: 10px;
+}
+
 .mainCreate{
   background-color: #696969;
   bottom: 0px;
@@ -144,4 +149,24 @@
   padding: 0px;
   margin: 0px;
   color: red;
+}
+
+ul{
+  list-style: none;
+}
+
+ul.horizontal1 li {
+  display: inline-block;
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+ul.horizontal li {
+  display: inline-block;
+  padding: 5px;
+}
+
+.mainImg{
+  width: 90%;
+  border-radius: 15px;
 }
