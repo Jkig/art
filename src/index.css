@@ -238,3 +238,8 @@ ul.horizontal li {
 .spacer5{
   height: 5px;
 }
+
+.loginButton {
+  color: white;
+  background-color: darkgray;
+}

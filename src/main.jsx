@@ -8,16 +8,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
-
-
-/*
-// old version
-
-
-    <Router>
-       <MyRoutes />
-    </Router>
-    or <BrowserRouter>...
-
-
-*/
