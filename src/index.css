@@ -216,8 +216,8 @@ ul{
 
 ul.horizontal1 li {
   display: inline-block;
-  padding-right: 15%;
-  padding-left: 15%;
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
 ul.horizontal li {
@@ -229,4 +229,12 @@ ul.horizontal li {
   max-width: 90%;
   max-height: 500px;
   border-radius: 15px;
+}
+
+.imageWraper{
+  width: 100%;
+}
+
+.spacer{
+  height: 10px;
 }

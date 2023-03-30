@@ -25,7 +25,9 @@ export default function RecentFeed(){
     
     return(
         <div>
-            {<Post { ...allPosts[0] }/>/*allPosts.map(post => (<Post { ...post }/>))*/}
+            {/*<Post { ...allPosts[0] }/>/*allPosts.map(post => (<Post { ...post }/>))*/}
+            {allPosts.map(post => (<Post { ...post}/>))}
+            <div className="spacer"></div>
         </div>
     )
 }
