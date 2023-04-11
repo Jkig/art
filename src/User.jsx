@@ -6,15 +6,15 @@ export default function User(props){
     return(
         <div>
             <ul className="unBulleted">
-                {!user && <a className="authButton" onClick={props.handleAuthenticating}>log In</a>}{/*href="/auth/login.html">log In</a>
-                */}
+                {!user && <a className="authButton" onClick={props.handleAuthenticating}>log In</a>}
                 <li>
                     {user && <img className="bigProfilePhoto" src={user.photoURL} />}
                     {user && <p>{user.displayName}</p>}
                     {user && <button onClick={() => auth.signOut()}>Sign Out</button>}
                 </li>
                 <div className="spacer5"/>
-                <li><button onClick={() => props.handleCreating()}>New Post</button></li>
+                {user && <li><button onClick={() => props.handlePage("UserPosts")}>Your Posts</button></li>}
+                {user && <li><button onClick={() => props.handleCreating()}>New Post</button></li>}
             </ul>
         </div>
     )
