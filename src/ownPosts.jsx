@@ -6,8 +6,6 @@ import {
 import { deleteObject, ref } from "firebase/storage";
 
 export default function OwnPosts(props) {
-    // take in an object, and send out a box with all the stuff.
-
     const deletePost = async (id, imageRef) => {
         const docRef = doc(db, "posts", id);
         const storageRef = ref(storage,imageRef)
@@ -15,8 +13,6 @@ export default function OwnPosts(props) {
         await deleteDoc(docRef);
         await deleteObject(storageRef);
     };
-
-    
 
     return (
         <div>

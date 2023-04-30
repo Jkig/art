@@ -1,5 +1,4 @@
 export default function NavBar(props) {
-    // TODO: I gotta make fix this, its running the handle page automatically everytime, i think i need annother component that makes it work, annoying
     return (
         <div>
             <div className="locker">

@@ -1,14 +1,11 @@
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../utils/firebase.js";
-//import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-// TODO: Set-Cookie: SameSite=None; Secure, its still working, but ~bad practice
 
 
 
 export default function Login(props) {
-    //const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
 
     const googleProvider = new GoogleAuthProvider();
@@ -36,13 +33,6 @@ export default function Login(props) {
                         <FcGoogle className="googleIcon"/>
                     </button>
                 </div>
-                <h1>
-                    
-                    {/* user && // does this do it?
-                        <a href="/" className="goHome">
-                            Success! Go home!
-    </a>*/}
-                </h1>
             </div>
         </div>
     )

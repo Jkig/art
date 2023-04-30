@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import NavBar from './navbar'
-import Feed from './feed'
+// import Feed from './feed' // add back when I have the ability to follow other accounts
 import RecentFeed from './recentFeed'
 import User from './User'
 import Create from './create'

@@ -12,7 +12,7 @@ export default function RecentFeed(){
         const collectionRef = collection(db, "posts");
         const q = query(collectionRef, orderBy('timestamp', 'desc'))
         const unsubscribe = onSnapshot(q, (snapshot) => {
-            setAllPosts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))// set imageRef to newImgRef
+            setAllPosts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
         })
         return unsubscribe;
     }

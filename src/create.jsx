@@ -5,9 +5,6 @@ import { AiOutlineCloseCircle } from "react-icons/Ai";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 
-// I need to upload the photo
-// create reference
-// create post, including reference
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // new
 import { nanoid } from 'nanoid'
 
@@ -35,15 +32,12 @@ export default function Create(props){
             return
         }
 
-        ///////// new
         const storageRef = ref(storage);
         const fileRef = ref(storageRef, `images/${nanoid()}`)
         uploadBytes(fileRef, e.target.files[0]).then(() => {
             console.log("successful upload!")
         })
-        // setPost({...post, imageSrc: fileRef})
         setPost({...post, imageSrc: e.target.files[0], imageRef: fileRef})
-        //console.log(post.imageSrc)
     }
     
 
@@ -63,7 +57,6 @@ export default function Create(props){
         e.preventDefault();
         const collectionRef = collection(db, "posts");
 
-        //imageURL: getDownloadURL(ref(gen, post.imageRef.fullPath)),// this one is newer
         getDownloadURL(ref(storage, post.imageRef)).then((ans) =>{
             addDoc(collectionRef, {
                 title: post.title,
@@ -76,20 +69,6 @@ export default function Create(props){
                 username: user.displayName,
             });
         })
-
-        // old functioning one:
-        /*
-        await addDoc(collectionRef, {
-            title: post.title,
-            description: post.description,
-            imageRef: post.imageRef.fullPath, 
-            timestamp: serverTimestamp(),
-            user: user.uid,
-            avatar: user.photoURL,
-            username: user.displayName,
-        });
-        */
-        
         
         if (post.imageSrc && (post.description.length <= 300) && (post.title.length <= 50)){
             props.handleCreating() // closes this when done
