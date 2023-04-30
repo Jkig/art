@@ -243,3 +243,13 @@ ul.horizontal li {
   color: white;
   background-color: darkgray;
 }
+
+.deleteButton{
+  background: none;
+  height: 24px;
+  padding: 0 14px 0 6px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  color: red;
+}

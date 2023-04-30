@@ -1,7 +1,7 @@
-import { db} from "../utils/firebase"
+import { db } from "../utils/firebase"
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import Post from "./post.jsx"
+import OwnPosts from "./ownPosts.jsx"
 
 import { auth } from "../utils/firebase.js";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -23,12 +23,12 @@ export default function UserPosts(){
     useEffect(() => {
         getPosts();
       }, []);
-    
+
     return(
         <div>
             <img className="bigProfilePhoto" src={user.photoURL} />
             <p>{user.displayName}'s posts: </p>
-            {allPosts.map(post => (<Post { ...post}/>))}
+            {allPosts.map(post => (<OwnPosts { ...post} />))}
             <div className="spacer"></div>
         </div>
     )
