@@ -1,20 +1,19 @@
-import { auth } from "../utils/firebase.js";
-import { useAuthState } from 'react-firebase-hooks/auth';
-
 export default function User(props){
-    const [user, loading] = useAuthState(auth);
+    console.log(props)
+    console.log(props.user)
     return(
         <div>
             <ul className="unBulleted">
-                {!user && <a className="authButton" onClick={props.handleAuthenticating}>log In</a>}
+                {!props.user && <a className="authButton" onClick={props.handleAuthenticating}>log In</a>}
                 <li>
-                    {user && <img className="bigProfilePhoto" src={user.photoURL} />}
-                    {user && <p>{user.displayName}</p>}
-                    {user && <button onClick={() => auth.signOut()}>Sign Out</button>}
+                    {props.user && <img className="bigProfilePhoto" src={props.user.photoURL} />}
+                    {props.user && <p>{props.user.displayName}</p>}
+                    {props.user && <button onClick={() => auth.signOut()}>Sign Out</button>}
                 </li>
                 <div className="spacer5"/>
-                {user && <li><button onClick={() => props.handlePage("UserPosts")}>Your Posts</button></li>}
-                {user && <li><button onClick={() => props.handleCreating()}>New Post</button></li>}
+                {props.user && <li><button onClick={() => props.handlePage("UserPosts")}>Your Posts</button></li>}
+                {props.user && <li><button onClick={() => props.handlePage("Following")}>Folowing</button></li>}
+                {props.user && <li><button onClick={() => props.handleCreating()}>New Post</button></li>}
             </ul>
         </div>
     )
