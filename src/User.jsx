@@ -1,6 +1,4 @@
 export default function User(props){
-    console.log(props)
-    console.log(props.user)
     return(
         <div>
             <ul className="unBulleted">

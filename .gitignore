@@ -24,4 +24,6 @@ dist-ssr
 *.sw?
 
 # other files:
-# utils/firebase.js # fine now
+# utils/firebase.js # fine now, it imports from .env.local
+
+notes.txt
