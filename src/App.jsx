@@ -37,14 +37,15 @@ function App() {
   }
 
   function handleUserToSee(new_uid){
-    // have a lot of 
+    // have a lot of work to do here, going to have it so i can have more state up top
+    //  and see who to filter through for someone else's
     setUserToSee(new_uid)
   }
 
   return (
     <div className="App">
       <NavBar handlePage={handlePage} page={page}/>
-      {(page == "RecentFeed") && <RecentFeed />}
+      {(page == "RecentFeed") && <RecentFeed user={user}/>}
       {(page == "User") && <User 
         handleCreating={handleCreating} 
         handleAuthenticating={handleAuthenticating} 

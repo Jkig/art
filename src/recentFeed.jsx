@@ -1,8 +1,9 @@
 import { db} from "../utils/firebase"
-import { addDoc, serverTimestamp, collection, onSnapshot, orderBy, query} from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Post from "./post.jsx"
 
+import { doc, setDoc, getDoc } from "firebase/firestore";  // make sure using doc correctly
 
 
 export default function RecentFeed(props){
@@ -23,19 +24,19 @@ export default function RecentFeed(props){
     
 
     
-    function followAccount(uidToFollow){
-    // all i have to do is ad a document that only has the uid of the to follow account
-        console.log("haven't done this stuff yet")
-        const collectionRef = collection(db, "following");
-        /*
-        // add a new document with user and timestamp as only fields... this is close
-        addDoc(collectionRef, {
-            user: user.uid,
-            timestamp: serverTimestamp(),
-        });
-        */
+    async function followAccount(uidToFollow) {
+        const location = doc(db,"following", props.user.uid)
+        
+        
+        try{
+            let allFolowing = await getDoc(location)
+            const newSet = allFolowing.data()
+            newSet.uid.push(uidToFollow)
 
-
+            setDoc(location, {uid: newSet.uid})
+        }catch (e) {
+            console.log(e)
+        }
     }
 
     return(
