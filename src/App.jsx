@@ -53,7 +53,7 @@ function App() {
         user={user}
       />}
       {(page == "UserPosts") && <UserPosts user={user} userToSee={userToSee} />}
-      {(page == "Following") && <Following handleUserToSee={handleUserToSee} userToSee={userToSee} />}
+      {(page == "Following") && <Following handleUserToSee={handleUserToSee} userUID={user.uid} />}
       {creating && <Create handleCreating={handleCreating}/>}
       {authenticating && <Login handleAuthenticating={handleAuthenticating}/>}
       

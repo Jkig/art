@@ -15,7 +15,7 @@ export default function Post(props) {
     // working on only rendering not self and not following already
     const getFollowers = async () => {
         // const location = doc(db,"following", props.viewerID)
-        let allFolowing = await getDoc(doc(db,"following", props.viewerID))//location)
+        let allFolowing = await getDoc(doc(db,"following", props.viewerID))
         const arrFollowing = await allFolowing.data().uid
         handleSetSetFollowing(new Set( await arrFollowing))
     }
