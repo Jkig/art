@@ -1,9 +1,9 @@
-import { db} from "../utils/firebase"
+import { db } from "../utils/firebase"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Post from "./post.jsx"
 
-import { doc, setDoc, getDoc } from "firebase/firestore";  // make sure using doc correctly
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 
 export default function RecentFeed(props){
@@ -20,14 +20,14 @@ export default function RecentFeed(props){
 
     useEffect(() => {
         getPosts();
-      }, []);
+    }, []);
     
 
     
     async function followAccount(uidToFollow) {
         const location = doc(db,"following", props.user.uid)
         
-        
+
         try{
             let allFolowing = await getDoc(location)
             const newSet = allFolowing.data()
@@ -41,7 +41,7 @@ export default function RecentFeed(props){
 
     return(
         <div>
-            {allPosts.map(post => (<Post { ...post} followAccount={followAccount} />))}
+            {allPosts.map(post => (<Post { ...post} followAccount={followAccount} viewerID={props.user.uid} />))}
             <div className="spacer"></div>
         </div>
     )

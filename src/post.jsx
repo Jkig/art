@@ -1,4 +1,31 @@
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../utils/firebase"
+import { useState, useEffect } from "react";
+
 export default function Post(props) {
+    // make a set/array of all who we follow:
+    // if the given uid is in the array then
+    // use useeffect here??
+    const [setFollowing, setSetFollowing] = useState(new Set())
+
+    function handleSetSetFollowing (newSet){
+        setSetFollowing(newSet)
+    }
+
+    // working on only rendering not self and not following already
+    useEffect(() => {
+        const getFollowers = async () => {
+            // const location = doc(db,"following", props.viewerID)
+            let allFolowing = await getDoc(doc(db,"following", props.viewerID))//location)
+            const arrFollowing = allFolowing.uid
+            handleSetSetFollowing(new Set(arrFollowing))
+            console.log(setFollowing)
+        }
+
+        getFollowers();
+    }, []);
+
+
     return (
         <div>
             <ul className="horizontal1">
@@ -7,7 +34,10 @@ export default function Post(props) {
                     <ul className="horizontal">
                         <li key={props.photo}><img className="smallProfilePhoto" src={props.avatar}/></li>
                         <li key={props.uname}><small>{props.username}</small></li>
-                        {<li key="followButton"> <button className="followButton" onClick={() => props.followAccount(props.user)}> Follow </button> </li>}
+                        {/** remove the buttton if poster is folowed (deal with follow yourself later) */}
+                        {props.viewerID !== props.user && !setFollowing.has(props.viewerID) && <li key="followButton">
+                            <button className="followButton" onClick={() => props.followAccount(props.user)}> Follow </button>
+                        </li>}
                     </ul>
                 </li>
                 
