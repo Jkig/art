@@ -22,7 +22,6 @@ export default function RecentFeed(props){
         getPosts();
     }, []);
     
-
     
     async function followAccount(uidToFollow) {
         const location = doc(db,"following", props.user.uid)

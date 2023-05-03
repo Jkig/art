@@ -13,14 +13,13 @@ export default function Post(props) {
     }
 
     // working on only rendering not self and not following already
+    const getFollowers = async () => {
+        // const location = doc(db,"following", props.viewerID)
+        let allFolowing = await getDoc(doc(db,"following", props.viewerID))//location)
+        const arrFollowing = await allFolowing.data().uid
+        handleSetSetFollowing(new Set( await arrFollowing))
+    }
     useEffect(() => {
-        const getFollowers = async () => {
-            // const location = doc(db,"following", props.viewerID)
-            let allFolowing = await getDoc(doc(db,"following", props.viewerID))//location)
-            const arrFollowing = allFolowing.uid
-            handleSetSetFollowing(new Set(arrFollowing))
-            console.log(setFollowing)
-        }
 
         getFollowers();
     }, []);
@@ -34,9 +33,8 @@ export default function Post(props) {
                     <ul className="horizontal">
                         <li key={props.photo}><img className="smallProfilePhoto" src={props.avatar}/></li>
                         <li key={props.uname}><small>{props.username}</small></li>
-                        {/** remove the buttton if poster is folowed (deal with follow yourself later) */}
-                        {props.viewerID !== props.user && !setFollowing.has(props.viewerID) && <li key="followButton">
-                            <button className="followButton" onClick={() => props.followAccount(props.user)}> Follow </button>
+                        {props.viewerID !== props.user && !setFollowing.has(props.user) && <li key="followButton">
+                            <button className="followButton" onClick={() => props.followAccount(props.user).then(getFollowers)}> Follow </button>
                         </li>}
                     </ul>
                 </li>

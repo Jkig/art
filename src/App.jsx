@@ -13,13 +13,11 @@ import Following from './following'
 import { auth } from "../utils/firebase.js";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-// TODO: add in user info, as this will change things soon
-//    pull auth up to this layer and pass info down
-//    (ex auth is in user)
+// TODO: rm auth from lower levels
 
 function App() {
   const [page, setPage] = useState("RecentFeed")
-  const [userToSee, setUserToSee] = useState("") // make sure this can never be a problem, and uid is stored as
+  const [userToSee, setUserToSee] = useState("")
   const [creating, setCreating] = useState(false)
   const [authenticating, setAuthenticating] = useState(false)
 
@@ -39,6 +37,7 @@ function App() {
   function handleUserToSee(new_uid){
     // have a lot of work to do here, going to have it so i can have more state up top
     //  and see who to filter through for someone else's
+    //  this is next!
     setUserToSee(new_uid)
   }
 

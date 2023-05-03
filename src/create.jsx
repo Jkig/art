@@ -10,7 +10,7 @@ import { nanoid } from 'nanoid'
 
 
 export default function Create(props){
-    const [post, setPost] = useState({imageSrc: undefined, title: "", description: ""})//maybe user id too?, probably fine without
+    const [post, setPost] = useState({imageSrc: undefined, title: "", description: ""})
     const [preview, setPreview] = useState();
     const [user,loading] = useAuthState(auth);
 
