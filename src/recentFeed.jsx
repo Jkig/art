@@ -40,7 +40,10 @@ export default function RecentFeed(props){
 
     return(
         <div>
-            {allPosts.map(post => (<Post { ...post} followAccount={followAccount} viewerID={props.user.uid} />))}
+            {!props.user && allPosts.map(post => (<Post { ...post} followAccount={followAccount} viewerID={""} />))
+                /* Throws a firebase error but not a problem*/
+            }
+            {props.user && allPosts.map(post => (<Post { ...post} followAccount={followAccount} viewerID={props.user.uid} />))}
             <div className="spacer"></div>
         </div>
     )

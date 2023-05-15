@@ -33,6 +33,9 @@ function App() {
   function handleAuthenticating(){
     setAuthenticating(!authenticating)
   }
+  function SignOutUser(){
+    auth.signOut();
+  }
 
   function handleUserToSee(new_uid){
     // have a lot of work to do here, going to have it so i can have more state up top
@@ -48,6 +51,7 @@ function App() {
       {(page == "User") && <User 
         handleCreating={handleCreating} 
         handleAuthenticating={handleAuthenticating} 
+        SignOutUser={SignOutUser}
         handlePage={handlePage} 
         handleUserToSee={handleUserToSee}
         user={user}

@@ -15,20 +15,16 @@ export default function Following(props) {
             return
         }
         /*
-        getAuth()
-            .getUsers(testUID).then((user) => {
-            const newArr = allAcc
-            newArr.push(user)
-            setAllAcc(newArr)
-            console.log("win?", allAcc)
-    })
-    */
+        for (followingID in uidsArr) {
+            
+        }
+        */
     }
 
 
     const getAcc = async () => {
         let allFollowing = await getDoc(doc(db,"following", props.userUID));
-        uidsArr = allFollowing.data().uid;
+        uidsArr = await allFollowing.data().uid;
         console.log("uid arr:", uidsArr);
         getData();
     }
@@ -41,7 +37,7 @@ export default function Following(props) {
     return (
         <>
             <h1> The accounts you follow: </h1>
-            {/** allPosts.map(acc => (<FollowingCard {...acc}/>)) */}
+            {/*allPosts.map(acc => (<FollowingCard {...acc}/>))*/}
         </>
     )
 };
