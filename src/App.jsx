@@ -19,7 +19,6 @@ function App() {
   const [page, setPage] = useState("RecentFeed")
   const [userToSee, setUserToSee] = useState("")
   const [creating, setCreating] = useState(false)
-  const [authenticating, setAuthenticating] = useState(false)
 
   const [user, loading] = useAuthState(auth);
 
@@ -29,9 +28,6 @@ function App() {
 
   function handleCreating(){
     setCreating(!creating)
-  }
-  function handleAuthenticating(){
-    setAuthenticating(!authenticating)
   }
   function SignOutUser(){
     auth.signOut();
@@ -49,8 +45,7 @@ function App() {
       <NavBar handlePage={handlePage} page={page}/>
       {(page == "RecentFeed") && <RecentFeed user={user}/>}
       {(page == "User") && <User 
-        handleCreating={handleCreating} 
-        handleAuthenticating={handleAuthenticating} 
+        handleCreating={handleCreating}
         SignOutUser={SignOutUser}
         handlePage={handlePage} 
         handleUserToSee={handleUserToSee}
@@ -59,7 +54,6 @@ function App() {
       {(page == "UserPosts") && <UserPosts user={user} userToSee={userToSee} />}
       {(page == "Following") && <Following handleUserToSee={handleUserToSee} userUID={user.uid} />}
       {creating && <Create handleCreating={handleCreating}/>}
-      {authenticating && <Login handleAuthenticating={handleAuthenticating}/>}
       
     </div>
   )

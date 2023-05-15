@@ -1,13 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../utils/firebase.js";
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 
-export default function Login(props) {
-    const [user, loading] = useAuthState(auth);
-
+export default function Login() {
     const googleProvider = new GoogleAuthProvider();
 
     const GoogleLogin = async () => {
@@ -16,13 +13,12 @@ export default function Login(props) {
         } catch (error) {
             console.log(error)
         }
-        props.handleAuthenticating();
     }
 
     return (
         <div className="loginPage">
             <div className="loginBox">
-                <h2 className="centerMe">Join</h2>
+                <h2 className="centerMe">SignIn or Sign Up!</h2>
                 <div>
                     <button 
                         onClick={GoogleLogin}

@@ -39,9 +39,6 @@ h1 {
 
 .loginPage{
   width: 100%;
-  min-width: 100%;
-  padding: 5%;
-  margin: auto;
 }
 
 
@@ -242,6 +239,7 @@ ul.horizontal li {
 .loginButton {
   color: white;
   background-color: darkgray;
+  position: center;
 }
 
 .deleteButton{

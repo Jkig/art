@@ -24,6 +24,14 @@ export default function Post(props) {
         getFollowers();
     }, []);
 
+    function handleFollowing() {
+        if (props.viewerID){
+            props.followAccount(props.user).then(getFollowers)
+        }
+        else{
+            alert('You must login to follow, you can login in the "User" page')
+        }
+    }
 
     return (
         <div>
@@ -34,7 +42,7 @@ export default function Post(props) {
                         <li key={props.photo}><img className="smallProfilePhoto" src={props.avatar}/></li>
                         <li key={props.uname}><small>{props.username}</small></li>
                         {props.viewerID !== props.user && !setFollowing.has(props.user) && <li key="followButton">
-                            <button className="followButton" onClick={() => props.followAccount(props.user).then(getFollowers)}> Follow </button>
+                            <button className="followButton" onClick={() => handleFollowing()}> Follow </button>
                         </li>}
                     </ul>
                 </li>

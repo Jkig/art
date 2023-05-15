@@ -1,8 +1,10 @@
+import Login from "./auth/login"
+
 export default function User(props){
     return(
         <div>
             <ul className="unBulleted">
-                {!props.user && <a className="authButton" onClick={props.handleAuthenticating}>Log In</a>}
+                {!props.user && <Login />}
                 <li>
                     {props.user && <img className="bigProfilePhoto" src={props.user.photoURL} />}
                     {props.user && <p>{props.user.displayName}</p>}
