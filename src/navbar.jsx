@@ -4,7 +4,7 @@ export default function NavBar(props) {
             <div className="locker">
                 <nav className="main-navbar">
                     <div className={`page${props.page === "RecentFeed" ? "Selected" : ""}`} onClick={() => props.handlePage("RecentFeed")}>Recent</div>
-                    {/*<div className={`page${props.page === "Fllowing" ? "Selected" : ""}`} onClick={() => props.handlePage("Following")}>Following</div>*/}
+                    {/* <div className={`page${props.page === "Fllowing" ? "Selected" : ""}`} onClick={() => props.handlePage("Following")}>Following</div> */}
                     <div className={`page${props.page === "User" ? "Selected" : ""}`} onClick={() => props.handlePage("User")}>User</div>
                 </nav>
             </div>

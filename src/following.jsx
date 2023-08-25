@@ -1,5 +1,5 @@
 import FollowingCard from "./followingCard"
-import { doc, getDoc } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../utils/firebase"
 
@@ -15,11 +15,23 @@ export default function Following(props) {
         if (uidsArr === null) {
             return
         }
-        /*
-        for (followingID in uidsArr) {
-            
+
+        const collectionRef = collection(db, "users");
+        const q = query(collectionRef, orderBy('name'))
+        console.log("q:", q)
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            if (true) {
+                setAllAcc(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
+            }
+        })
+        console.log("allacc:", allAcc)
+        
+        for (let followingID in uidsArr) {
+            console.log(uidsArr[followingID])
+            // get their info
+            setAllAcc(allAcc.concat([{}]))
         }
-        */
+        
     }
 
 
