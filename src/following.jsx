@@ -10,6 +10,7 @@ export default function Following(props) {
     // now i need to use this uid arr and get the info i need from the users given their ids
     // getUsers will take in full array and return all the uses, hust set state to that
 
+    // I wanted to keep it simple, what I'll have to do is call a GCP function
     const getData = async () => {
         if (uidsArr === null) {
             return
