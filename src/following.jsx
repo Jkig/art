@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../utils/firebase"
 
 export default function Following(props) {
+    /*
     const [allAcc, setAllAcc] = useState([]);
     let uidsArr = null;
     const testUID = "m3j6Gq7z52XeLLhw34zytOdqion1"
@@ -50,7 +51,38 @@ export default function Following(props) {
     return (
         <>
             <h1> The accounts you follow: </h1>
-            {/*allPosts.map(acc => (<FollowingCard {...acc}/>))*/}
+            {//allPosts.map(acc => (<FollowingCard {...acc}/>))
+            }
+        </>
+    )
+    */
+    const runCloud = async () => {
+    try {
+      const response = await fetch(
+        'https://us-central1-art-share-fb752.cloudfunctions.net/getRecent',
+        {
+          method: 'POST', // or 'GET' depending on your function
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // Add any payload or data if required
+        }
+      );
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Function response:', result);
+      } else {
+        console.error('Function call failed.');
+      }
+    } catch (error) {
+      console.error('Error calling function:', error);
+    }
+  };
+
+    return (
+        <>
+            <button onClick={runCloud}> Test Button </button>
         </>
     )
 };
