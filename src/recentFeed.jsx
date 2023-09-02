@@ -16,6 +16,8 @@ export default function RecentFeed(props){
         const unsubscribe = onSnapshot(q, (snapshot) => {
             setAllPosts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
         })
+
+        console.log(allPosts)
         return unsubscribe;
     }
 
